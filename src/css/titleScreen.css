@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: PokemonFont, Arial, Helvetica, sans-serif;
+}
+#root {
+    background-color: black;
+}
+.background{
+    background-image: url("../assets/background-image.jpeg");
+    background-size: cover;
+    background-position: bottom;
+    height: 100vh;
+    background-repeat: no-repeat;
+    animation: scaleIn 2s ease-out forwards;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+    position:relative;
+}
+.loading {
+    background-image: url("../assets/loading.gif");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7em;
+}
+
+
+@font-face {
+    font-family: PokemonFont;
+    src: url(../assets/pokemon-emerald.ttf);
+}
+@keyframes scaleIn {
+    0%{
+        transform: scale(0) rotate(0deg);
+        border-radius: 20em;
+    }
+
+    100%{
+        transform: scale(1) rotate(1440deg);
+    }
+    
+}

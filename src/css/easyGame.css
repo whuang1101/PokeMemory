@@ -1,0 +1,79 @@
+.red-loading{
+    height: 10em;
+    width: 10em;
+    background-image: url("../assets/red-loading.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.game-background {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.game {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   width: 100%;
+}
+.display-score {
+    position: absolute;
+    right: 20%;
+    font-size: 2em;
+}
+ .display-round {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    font-size: 5em;
+}
+.memory-cards{ 
+    padding: 2em;
+    flex:10;
+    border:1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+    flex-wrap: wrap;
+}
+.card {
+    height: 20em;
+    width: 15em;
+    background-color: white;
+    position: relative;
+    border: 1em solid blue;
+    border-radius: 2em;
+}
+
+.pokemon-name {
+    position: absolute;
+    bottom:5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+}
+.pokemon-image {
+    height: 15em;
+    width: 15em;
+}
+.win, .loss {
+    height: 100%;
+    width: 100%;
+    background-color: blue;
+}
+.win-screen, .loss-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 2em;
+    height: 10em;
+    width: 10em;
+    background-color: white;
+
+}
