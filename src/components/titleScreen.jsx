@@ -35,8 +35,7 @@ function TitleScreen() {
   return (
     <div className={loading}>
       {loading === "loading" ? <div>{loadingMessage}</div> :
-      !loadGame ? <SelectMenu startGame={handleGame}/>: <EasyGame gameClick={loadGame} newScore={score} newHandleScore={handleScore}/>}
-
+      !loadGame ? <SelectMenu startGame={handleGame}/>: <EasyGame gameClick={loadGame} newScore={score} newHandleScore={handleScore} setNewScore ={setScore}/>}
     </div>
   );
 }

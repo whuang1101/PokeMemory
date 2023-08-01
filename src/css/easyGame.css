@@ -72,8 +72,38 @@
     left: 50%;
     transform: translate(-50%,-50%);
     font-size: 2em;
-    height: 10em;
-    width: 10em;
-    background-color: white;
+    height: 8em;
+    width: 13em;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    flex-direction: column;
+    border-radius: 2em;
+}
+.win-screen {
+    background-image: url("../assets/pokemon-cheering.gif");
+    background-position: center;
+    background-size: cover;
+    color: white ;
+}
+.first-text, .second {
+    flex:1;
+}
 
+.try-again {
+    font-size: 1.2em;
+    border-radius: 1em;
+    padding: .5em;
+    background-color: transparent;
+    color: white;
+}
+.try-again:hover {
+    font-size: 1.3em;
+    border: 2px solid white;
+}
+.loss-screen {
+    background-image: url("../assets/pikachu-crying.webp");
+    background-position: center;
+    background-size: cover;
 }

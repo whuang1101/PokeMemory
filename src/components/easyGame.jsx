@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import "../css/easyGame.css";
 import findPokemon from"../JS/findPokemon"
 import shuffleArray from "../JS/shuffleArray";
-function EasyGame({ gameClick, newScore, newHandleScore}) {
+function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
   const [redLoading, setRedLoading] = useState(true);
   const [pokemonArray,setPokemonArray] = useState([]);
-  const [winOrLoss, setWinOrLoss] = useState("");
+  const [winOrLoss, setWinOrLoss] = useState("none");
+  const [tryAgain, setTryAgain] = useState(false);
   useEffect(() => {
     const fetchPokemon = async () => {
       const foundPokemon = await findPokemon(5);
@@ -14,9 +15,17 @@ function EasyGame({ gameClick, newScore, newHandleScore}) {
         setRedLoading(false);
       }, 4000);
     };
-    fetchPokemon()
+    fetchPokemon();
+    const resetGame = () => {
+      setWinOrLoss("none");
+      setNewScore(0);
+      setTryAgain(false); 
+    }
+    if(tryAgain){
+      resetGame();
+    }
   
-  }, [gameClick]);
+  }, [gameClick, tryAgain]);
   const handleCardClick = (index) => {
     if(!pokemonArray[index].clicked)
   {  const newPokemonArray = [... pokemonArray];
@@ -30,6 +39,9 @@ function EasyGame({ gameClick, newScore, newHandleScore}) {
     if(pokemonArray.length === newScore+1){
       setWinOrLoss("win");
     }
+  }
+  const handleRestart = () => {
+    setTryAgain(!tryAgain)
   }
   const handleArray = (index)=> {
     if(!pokemonArray[index].clicked)
@@ -60,7 +72,7 @@ function EasyGame({ gameClick, newScore, newHandleScore}) {
             }
             <div className="memory-cards">
               {pokemonArray.map((data, index) => (
-                winOrLoss === "" ?
+                winOrLoss === "none" ?
                 <div className="card" key={index} onClick={() => handleArray(index)}>
                   <div className="pokemon">
                     <img src={data.image} alt={data.name} className="pokemon-image" />
@@ -77,15 +89,21 @@ function EasyGame({ gameClick, newScore, newHandleScore}) {
             </div>
           </div>
           {winOrLoss === "Loss" ? 
-          <div className="loss">
             <div className="loss-screen">
-              Loss
-            </div>
+              <div className="first-text">You failed to catch all the shinies... They have escaped!</div>
+              <div className="second">
+              <button className="try-again" onClick={handleRestart}>Try Again?</button>
+              </div>
           </div>:
             winOrLoss === "win" &&
-            <div className="win">
-              <div className="win-screen">Win</div>
-            </div>
+            <>
+              <div className="win-screen">
+                <div className="first-text">Congratulations Pokemon Master. You've caught 'em all</div>
+              <div className="second">
+              <button className="try-again" onClick={handleRestart}>Play Again?</button>
+              </div>
+              </div>
+              </>
             }
         </>
       )}
