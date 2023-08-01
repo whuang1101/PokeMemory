@@ -7,6 +7,7 @@ async function findPokemon(size) {
         const nameAndImage = {name: data.name, image: data.sprites.front_shiny , type: data.types[0].type, clicked: false}
         array.push(nameAndImage);
     }
+    console.log(array);
     return array;
 }
 
