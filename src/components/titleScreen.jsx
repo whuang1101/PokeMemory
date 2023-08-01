@@ -15,7 +15,6 @@ function TitleScreen() {
   const handleSelectMode = (e) => {
     const mode = e.target.innerHTML;
     setSelectMode(mode);
-    console.log(mode)
   }
   const handleScore = () =>{
     setScore(score +1);
