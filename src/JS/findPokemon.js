@@ -1,6 +1,6 @@
 async function findPokemon(size) {
     let newNumber = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < size; i++) {
         let number = Math.floor(Math.random() * 493);
         const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + number);
         const data = await response.json();

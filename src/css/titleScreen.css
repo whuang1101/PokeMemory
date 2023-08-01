@@ -12,10 +12,10 @@
     background-position: bottom;
     height: 100vh;
     background-repeat: no-repeat;
-    animation: scaleIn 2s ease-out forwards;
+    animation: scaleIn 1s ease-out forwards;
     animation: name duration timing-function delay iteration-count direction fill-mode;
     position:relative;
-}
+}   
 .loading {
     background-image: url("../assets/loading.gif");
     background-size: cover;
@@ -31,7 +31,7 @@
 
 
 @font-face {
-    font-family: PokemonFont;
+    font-family: PokemonTextFont;
     src: url(../assets/pokemon-emerald.ttf);
 }
 @keyframes scaleIn {

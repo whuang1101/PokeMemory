@@ -3,6 +3,11 @@
     width:100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
+.easy, .medium, .hard {
+    display: flex;
+    align-items: center;
+    gap: .2em;
+}
 .menu {
     height: 14.5em;
     width: 31em;
@@ -52,7 +57,7 @@
     0%{
         opacity: 0;
     }
-    50%{
+    25%{
         opacity: 0;
     }
     100%{

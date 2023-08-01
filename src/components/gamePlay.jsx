@@ -1,21 +1,34 @@
 import { useEffect, useState } from "react";
-import "../css/easyGame.css";
+import "../css/gamePlay.css";
 import findPokemon from"../JS/findPokemon"
 import createDisplayArray from "../JS/createDisplayArray";
 import returnNameIndex from "../JS/returnNameIndex";
-function GamePlay({ gameClick, newScore, newHandleScore, setNewScore}) {
+function GamePlay({selectMode, gameClick, newScore, newHandleScore, setNewScore, handleGame}) {
   const [redLoading, setRedLoading] = useState(true);
-  const [pokemonArray,setPokemonArray] = useState([]);
   const [displayArray, setDisplayArray] = useState([]);
   const [clickedArray, setClickedArray] = useState([]);
   const [unClickedArray, setUnClickedArray] = useState([]);
   const [winOrLoss, setWinOrLoss] = useState("none");
   const [tryAgain, setTryAgain] = useState(false);
+  let numberOfRounds = 0;
+  let displayNumber = 0;
+  if(selectMode === "Easy"){
+    numberOfRounds = 5;
+    displayNumber = 3;
+  }
+  else if(selectMode === "Medium"){
+    numberOfRounds = 10;
+    displayNumber = 4;
+  } 
+  else if(selectMode === "Hard") {
+    numberOfRounds = 20;
+    displayNumber =6;
+  }
   useEffect(() => {
     const fetchPokemon = async () => {
-      const foundPokemon = await findPokemon(5);
+      const foundPokemon = await findPokemon(numberOfRounds);
       setUnClickedArray([...foundPokemon]);
-      const makeArray = createDisplayArray([...foundPokemon])
+      const makeArray = createDisplayArray([...foundPokemon], [] , displayNumber)
       setDisplayArray(makeArray);
       setTimeout(() => {
         setRedLoading(false);
@@ -58,7 +71,7 @@ function GamePlay({ gameClick, newScore, newHandleScore, setNewScore}) {
 
     if(unClickedArray.length >1)
     {
-    const createDisplay = createDisplayArray(newUnClicked,newClicked,3);
+    const createDisplay = createDisplayArray(newUnClicked,newClicked,displayNumber);
     setDisplayArray([...createDisplay])
   }
     }
@@ -67,7 +80,7 @@ function GamePlay({ gameClick, newScore, newHandleScore, setNewScore}) {
     }
   }
   const handleWin = () => {
-    if(clickedArray.length === 5){
+    if(clickedArray.length === numberOfRounds){
       setWinOrLoss("win");
     }
   }
@@ -76,7 +89,7 @@ function GamePlay({ gameClick, newScore, newHandleScore, setNewScore}) {
   }
 
   useEffect(()=> {
-    if(clickedArray.length=== 5) 
+    if(clickedArray.length=== numberOfRounds) 
     { 
       handleWin()
     }
@@ -88,12 +101,19 @@ function GamePlay({ gameClick, newScore, newHandleScore, setNewScore}) {
         <div className="red-loading"></div>
       ) : (
         <>
+        <div className="return-title" onClick={handleGame}>
+          <div className="first-title">PokeMemory
+          </div>
+        <div className="second-title">
+        Main Menu
+        </div>
+        </div>
           <div className="game">
             <div className="display-score">
               Score: {newScore}
             </div>
-            {newScore < 5 ?<div className="display-round">Round: {newScore + 1}/5</div>:
-            <div className="display-round">Round: 5/5</div>
+            {newScore < numberOfRounds ?<div className="display-round">Round: {newScore + 1}/{numberOfRounds}</div>:
+            <div className="display-round">Round: {numberOfRounds}/{numberOfRounds}</div>
             }
             <div className="memory-cards">
               {displayArray.map((data, index) => (
