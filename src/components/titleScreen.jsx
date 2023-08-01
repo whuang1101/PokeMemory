@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SelectMenu from "./selectMenu";
 import '../css/titleScreen.css'
-import EasyGame from "./easyGame";
+import GamePlay from "./gamePlay.jsx";
 function TitleScreen() {
   const [loading, setLoading] = useState("loading");
   const [loadingMessage, setLoadingMessage] = useState("Loading");
@@ -35,7 +35,7 @@ function TitleScreen() {
   return (
     <div className={loading}>
       {loading === "loading" ? <div>{loadingMessage}</div> :
-      !loadGame ? <SelectMenu startGame={handleGame}/>: <EasyGame gameClick={loadGame} newScore={score} newHandleScore={handleScore} setNewScore ={setScore}/>}
+      !loadGame ? <SelectMenu startGame={handleGame}/>: <GamePlay gameClick={loadGame} newScore={score} newHandleScore={handleScore} setNewScore ={setScore}/>}
     </div>
   );
 }

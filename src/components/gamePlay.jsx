@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "../css/easyGame.css";
 import findPokemon from"../JS/findPokemon"
-import shuffleArray from "../JS/shuffleArray";
 import createDisplayArray from "../JS/createDisplayArray";
-function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
+import returnNameIndex from "../JS/returnNameIndex";
+function GamePlay({ gameClick, newScore, newHandleScore, setNewScore}) {
   const [redLoading, setRedLoading] = useState(true);
   const [pokemonArray,setPokemonArray] = useState([]);
   const [displayArray, setDisplayArray] = useState([]);
@@ -14,9 +14,8 @@ function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
   useEffect(() => {
     const fetchPokemon = async () => {
       const foundPokemon = await findPokemon(5);
-      setUnClickedArray(foundPokemon);
-      const makeArray = createDisplayArray(foundPokemon)
-      console.log(makeArray);
+      setUnClickedArray([...foundPokemon]);
+      const makeArray = createDisplayArray([...foundPokemon])
       setDisplayArray(makeArray);
       setTimeout(() => {
         setRedLoading(false);
@@ -28,46 +27,60 @@ function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
       setWinOrLoss("none");
       setNewScore(0);
       setTryAgain(false); 
+
     }
     if(tryAgain){
       resetGame();
     }
   
   }, [gameClick, tryAgain]);
+
+  const handleArray = (index) => {
+    if(!displayArray[index].clicked){
+    setNewScore(newScore+1);
+    const unClickedIndex = returnNameIndex(unClickedArray, displayArray[index].name);
+    setUnClickedArray((prevUnClicked) => {
+      const newUnClicked = [...prevUnClicked];
+      newUnClicked.splice(unClickedIndex,1);
+      return newUnClicked
+    })
+    const newUnClicked = [...unClickedArray];
+    newUnClicked.splice(unClickedIndex,1);
+    setClickedArray((prevClicked) => {
+      const newClicked = [...prevClicked];
+      const newDisplay= displayArray[index];
+      newDisplay.clicked = true
+      newClicked.push(newDisplay);
+      return newClicked;
+    })
+    const newClicked = [...clickedArray];
+    newClicked.push(displayArray[index]);
+
+    if(unClickedArray.length >1)
+    {
+    const createDisplay = createDisplayArray(newUnClicked,newClicked,3);
+    setDisplayArray([...createDisplay])
+  }
+    }
+    else{
+      setWinOrLoss("loss")
+    }
+  }
   const handleWin = () => {
-    if(unClickedArray.length === 0){
+    if(clickedArray.length === 5){
       setWinOrLoss("win");
     }
   }
   const handleRestart = () => {
     setTryAgain(!tryAgain)
   }
-  const handleArray = (index)=> {
-    if(!displayArray[index].clicked)
-    {  
-      handleCardClick(index);
-      handleWin();
-    }
-    else{
-      setWinOrLoss("Loss");
-    }
-  }
-  const handleCardClick = (index) => {
-    if(!displayArray[index].clicked)
-  { 
-    newHandleScore(newScore + 1);
-    console.log(clickedArray)
-    console.log(unClickedArray)
-  };
-  } 
+
   useEffect(()=> {
-    // console.log(displayArray)
-    // console.log(clickedArray)
-    console.log(unClickedArray)
-    const createDisplay = createDisplayArray(unClickedArray,clickedArray,3)
-    // console.log(createDisplay)
-    // setDisplayArray(createDisplay)
-  },[unClickedArray])
+    if(clickedArray.length=== 5) 
+    { 
+      handleWin()
+    }
+  },[unClickedArray, displayArray])
   
   return (
     <div className="game-background">
@@ -100,7 +113,7 @@ function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
               ))}
             </div>
           </div>
-          {winOrLoss === "Loss" ? 
+          {winOrLoss === "loss" ? 
             <div className="loss-screen">
               <div className="first-text">You failed to catch all the shinies... They have escaped!</div>
               <div className="second">
@@ -109,11 +122,13 @@ function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
           </div>:
             winOrLoss === "win" &&
             <>
-              <div className="win-screen">
-                <div className="first-text">Congratulations Pokemon Master. You've caught 'em all</div>
-              <div className="second">
-              <button className="try-again" onClick={handleRestart}>Play Again?</button>
-              </div>
+              <div className="win">
+                  <div className="win-screen">
+                    <div className="first-text">Congratulations Pokemon Master. You've caught 'em all</div>
+                  <div className="second">
+                    <button className="try-again" onClick={handleRestart}>Play Again?</button>
+                  </div>
+                  </div>
               </div>
               </>
             }
@@ -123,4 +138,4 @@ function EasyGame({ gameClick, newScore, newHandleScore, setNewScore}) {
   );
 }
 
-export default EasyGame;
+export default GamePlay;
