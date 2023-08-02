@@ -147,7 +147,7 @@ function GamePlay({selectMode, gameClick, newScore, newHandleScore, setNewScore,
         <div className="red-loading"></div>
       ) : (
         <>
-        <div className="return-title" onClick={handleExit} tabIndex={0} onKeyDown={newClickReturn}>
+        <div className="return-title" onClick={handleExit} tabIndex={0} onKeyDown={newClickReturn} role="button">
           <div className="first-title">PokeMemory</div>
         <div className="second-title">
         Main Menu
