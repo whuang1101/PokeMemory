@@ -4,8 +4,10 @@
 [Live Demo!!!](https://radiant-custard-8ef4fb.netlify.app/)
 
 ## Features
-
 - Loading Screen
 - Difficulty Levels
 
-
+## Used Technologies
+-React Framework
+-JS, CSS, HTML
+-Pokemon API
