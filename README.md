@@ -11,6 +11,7 @@ In this game you pick a difficulty and try not to choose the same pokemon twice!
 ## Features
 - Loading Screen
 - Difficulty Levels
+- Responsive Layout
 
 ## Used Technologies
 - React Framework
