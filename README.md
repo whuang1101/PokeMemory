@@ -1,8 +1,6 @@
-# React + Vite
+#Memory Card game 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://github.com/whuang1101/PokeMemory/assets/91977590/8de9bd6d-3421-4c4a-8602-2e50f97152b8)
+![link](https://radiant-custard-8ef4fb.netlify.app/) Live Demo
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
