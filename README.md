@@ -1,8 +1,23 @@
-# React + Vite
+# Memory Card Game 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In this game you pick a difficulty and try not to choose the same pokemon twice!
+## Web Version
+![image](https://github.com/whuang1101/PokeMemory/assets/91977590/8de9bd6d-3421-4c4a-8602-2e50f97152b8)
+## Mobile Version
+![image](https://github.com/whuang1101/PokeMemory/assets/91977590/65359d8d-e566-4a87-9769-1457cd77151e)
 
-Currently, two official plugins are available:
+[Live Demo!!!](https://radiant-custard-8ef4fb.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Loading Screen
+- Difficulty Levels
+- Responsive Layout
+
+## Used Technologies
+- React Framework
+- JS, CSS, HTML
+- Pokemon API
+
+## Works
+- ![Previous Project](https://github.com/whuang1101/cv-generator)
+- [Next Project]
