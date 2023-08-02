@@ -5,7 +5,7 @@
 
 ## Features
 
-Loading Screen
-Difficulty Levels
+- Loading Screen
+- Difficulty Levels
 
 
