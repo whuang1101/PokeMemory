@@ -196,13 +196,9 @@
         padding: 0px ;
         gap: 0px;
     }
-    body {
-        overflow: hidden;
-    }
     .game-background{
         font-size: .4em;
         max-height: 100vh;
-        overflow: hidden;
     }
     .display-score{
         left:50%;
