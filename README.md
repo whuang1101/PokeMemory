@@ -8,6 +8,6 @@
 - Difficulty Levels
 
 ## Used Technologies
--React Framework
--JS, CSS, HTML
--Pokemon API
+- React Framework
+- JS, CSS, HTML
+- Pokemon API
