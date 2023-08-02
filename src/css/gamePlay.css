@@ -92,8 +92,6 @@
   .card-side.back.rotation {
     transform: rotateY(0deg);
   }
-  
-
 .display-pokemon{
     height: 100%;
     background-color: white;
@@ -178,17 +176,31 @@
     }
 }
 
+@media screen and (max-height:800px) {
+    .bottom-section{
+        display: none !important;
+    }
+    .info-blurb{
+        font-size: .8em;
+    }
+}
 @media screen and (max-width: 500px) {
     *{
         margin: 0px;
+        padding: 0px ;
         gap: 0px;
+    }
+    body {
+        overflow: hidden;
     }
     .game-background{
         font-size: .4em;
+        max-height: 100vh;
+        overflow: hidden;
     }
     .display-score{
         left:50%;
-        top: 10%;
+        top: 8%;
         transform: translateX(-50%);
         font-size: 4em;
     }
@@ -196,23 +208,20 @@
         font-size: 1.4em;
     }
     .display-round{
-        flex: 1;
+        flex: 2;
         font-size: 8em;
     }
     .red-loading{
-    height: 10em;
-    width: 10em;
+    height: 20em;
+    width: 20em;
     background-size: cover;
     }
     .bottom-section {
-        flex:2
+        flex:1
     }
     .return-title {
-        top: 85%;
-        transform: rotate(40deg) translateX(-50%);
-        left:45%;
-        font-size: 2.5em;
-        
+        z-index: 2;
+        font-size: .8em;
     }
     .game{ 
         gap: 2em;
@@ -242,5 +251,14 @@
         color:black;
         font-family:PokemonBoldFont;
         border:2px solid black;
+    }
+    .bottom-section{
+        position: relative;
+    }
+    .bottom-section {
+        display: block;
+    }
+    .hi {
+        display: none;
     }
 }

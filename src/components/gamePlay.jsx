@@ -3,7 +3,10 @@ import "../css/gamePlay.css";
 import findPokemon from"../JS/findPokemon"
 import createDisplayArray from "../JS/createDisplayArray";
 import returnNameIndex from "../JS/returnNameIndex";
-function GamePlay({selectMode, gameClick, newScore, newHandleScore, setNewScore, handleGame}) {
+import MakeInfo from "./info";
+import Icon from '@mdi/react';
+import { mdiAlphaXCircleOutline } from '@mdi/js';
+function GamePlay({selectMode, gameClick, newScore, newHandleScore, setNewScore, handleGame, handleInfo, actualInfo}) {
   const [redLoading, setRedLoading] = useState(true);
   const [displayArray, setDisplayArray] = useState([]);
   const [clickedArray, setClickedArray] = useState([]);
@@ -127,30 +130,40 @@ function GamePlay({selectMode, gameClick, newScore, newHandleScore, setNewScore,
       handleWin()
     }
   },[unClickedArray, displayArray])
-  
+  const newClickReturn = (event) => {
+    if(event.key === "Enter"){
+      handleExit()
+    }
+  }
+  const newClickPokemon = (event,index) => {
+    if(event.key === "Enter"){
+      console.log("hi")
+      handleArray(index)
+    }
+  }
   return (
     <div className="game-background">
       {redLoading ? (
         <div className="red-loading"></div>
       ) : (
         <>
-        <div className="return-title" onClick={handleExit}>
+        <div className="return-title" onClick={handleExit} tabIndex={0} onKeyDown={newClickReturn}>
           <div className="first-title">PokeMemory</div>
         <div className="second-title">
         Main Menu
         </div>
         </div>
           <div className="game">
-            <div className="display-score">
+            <div className="display-score" tabIndex={0}>
               Score: {newScore}
             </div>
-            {newScore < numberOfRounds ?<div className="display-round">Round: {newScore + 1}/{numberOfRounds}</div>:
+            {newScore < numberOfRounds ?<div className="display-round" tabIndex={0}>Round: {newScore + 1}/{numberOfRounds}</div>:
             <div className="display-round">Round: {numberOfRounds}/{numberOfRounds}</div>
             }
             <div className={mobileVersion}>
               {displayArray.map((data, index) => (
                 winOrLoss === "none" ?
-                <div className="card" key={index} onClick={() => handleArray(index)}>
+                <div className="card" key={index} onClick={() => handleArray(index)} tabIndex={0} onKeyDown={(event)=> newClickPokemon(event,index)} aria-labelledby={data.name}>
                   <div className={flipClass} >
                     <div className="display-pokemon">
                         <div className="pokemon">
@@ -168,8 +181,16 @@ function GamePlay({selectMode, gameClick, newScore, newHandleScore, setNewScore,
                 </div>
               </div>
               ))}
+              <div className="hi">
+              <MakeInfo handleInfo = {handleInfo} actualInfo = {actualInfo} newSize={3} mobile = {false}/>
+              </div>
             </div>
             <div className="bottom-section">
+              <div className="info">
+                <div className="directions">The Objective of this game is to never click on the same pokemon twice! ENJOY!!</div>
+                <div className="github">This Project was made by <a href ="https://github.com/whuang1101/PokeMemory">@Whuang1101</a></div>
+                <div className="close-icon" onClick={handleInfo}><Icon path={mdiAlphaXCircleOutline} size={1} /></div>
+              </div>
             </div>
           </div>
           {winOrLoss === "loss" ? 
