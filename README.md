@@ -11,3 +11,7 @@
 - React Framework
 - JS, CSS, HTML
 - Pokemon API
+
+## Works
+- ![Previous Project](https://github.com/whuang1101/cv-generator)
+- [Next Project]
