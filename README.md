@@ -19,5 +19,5 @@ In this game you pick a difficulty and try not to choose the same pokemon twice!
 - Pokemon API
 
 ## Works
-- [Previous Project CV Maker](https://github.com/whuang1101/cv-generator)
-- [Next Project Shopping Cart](https://github.com/whuang1101/Shopping-Cart/blob/main/README.md)
+- [Previous Project: CV Maker](https://github.com/whuang1101/cv-generator)
+- [Next Project: Shopping Cart](https://github.com/whuang1101/Shopping-Cart/blob/main/README.md)
